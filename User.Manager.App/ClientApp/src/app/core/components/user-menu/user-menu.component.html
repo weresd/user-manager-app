@@ -1,0 +1,15 @@
+<div class="app-user-menu">
+    <mat-menu #userMenu="matMenu" [xPosition]="xPosition">
+        <button *ngIf="user" [disabled]="true" mat-menu-item>Log out</button>
+
+        <ng-container *ngIf="!user">
+            <button [disabled]="true" mat-menu-item>Sing In</button>
+            <button [disabled]="true" mat-menu-item>Sing Up</button>
+        </ng-container>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="userMenu" class="app-user-menu__main-button">
+        <mat-icon>person_outline</mat-icon>
+        <span>{{ userLogin }}</span>
+    </button>
+</div>

@@ -1,0 +1,27 @@
+@import "../../../../styles/smart-grid.scss";
+
+.app-header {
+    .toolbar {
+        &__filler {
+            flex: 1 1 auto;
+        }
+
+        &__title {
+            width: 200px;
+            align-self: end;
+            height: 80%;
+            padding: 10px;
+            margin-left: 16px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+    }
+
+    &__user-menu {
+        display: block;
+
+        @include xs-block() {
+            display: none;
+        }
+    }
+}

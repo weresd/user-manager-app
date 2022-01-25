@@ -1,0 +1,25 @@
+:host {
+    height: 100%;
+}
+
+.app-body {
+    height: 100%;
+
+    &__sidenav-container {
+        height: 100%;
+    }
+
+    &__sidenav-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__content {
+        position: relative;
+        flex-grow: 1;
+    }
+
+    &__user-menu {
+        width: 100%;
+    }
+}

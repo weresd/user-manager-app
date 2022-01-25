@@ -1,0 +1,17 @@
+:host {
+    height: 100%;
+}
+
+.app-page-not-found {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 2em;
+    text-align: center;
+
+    &__code {
+        margin: 0;
+        font-size: 1.5em;
+    }
+}

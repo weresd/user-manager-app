@@ -1,0 +1,7 @@
+@import "components/header/header.component.theme.scss";
+@import "components/spinner/spinner.component.theme.scss";
+
+@mixin app-core-module-theme($theme) {
+    @include app-header-component-theme($theme);
+    @include app-spinner-component-theme($theme);
+}

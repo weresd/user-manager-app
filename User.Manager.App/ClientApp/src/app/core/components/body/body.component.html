@@ -1,0 +1,22 @@
+<div class="app-body">
+    <mat-sidenav-container class="app-body__sidenav-container">
+        <mat-sidenav #sidenav mode="over" fixedInViewport="true">
+            <h3>Main menu</h3>
+            <mat-divider></mat-divider>
+            <app-main-menu (itemClick)="sidenav.close()"></app-main-menu>
+            <mat-divider></mat-divider>
+            <mat-list>
+                <mat-list-item>
+                    <app-user-menu [xPosition]="'after'" class="app-body__user-menu"></app-user-menu>
+                </mat-list-item>
+            </mat-list>
+        </mat-sidenav>
+        <mat-sidenav-content class="app-body__sidenav-content">
+            <app-header (burgerClick)="sidenav.open()"></app-header>
+            <div class="app-body__content">
+                <app-spinner></app-spinner>
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

@@ -1,0 +1,7 @@
+<div class="app-main-menu">
+    <mat-list class="app-main-menu__list">
+        <mat-list-item *ngFor="let menuItem of menuItems" class="app-main-menu__list-item">
+            <a mat-button [routerLink]="[menuItem.route]" (click)="changeItem(menuItem)">{{ menuItem.title }}</a>
+        </mat-list-item>
+    </mat-list>
+</div>

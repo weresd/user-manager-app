@@ -1,0 +1,11 @@
+@import "~@angular/material/theming";
+
+@mixin app-spinner-component-theme($theme) {
+    $background: map-get($theme, background);
+
+    .app-spinner {
+        &__overlay {
+            background: mat-color($background, card, 0.6);
+        }
+    }
+}
