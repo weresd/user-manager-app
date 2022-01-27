@@ -1,5 +1,4 @@
-import { EventEmitter, Output } from '@angular/core';
-import { Component } from '@angular/core';
+import { EventEmitter, Output, Component } from '@angular/core';
 
 import { MenuItem } from './menu-item';
 

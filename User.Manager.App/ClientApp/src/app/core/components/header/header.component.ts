@@ -1,5 +1,4 @@
-import { EventEmitter } from '@angular/core';
-import { Component, Output } from '@angular/core';
+import { EventEmitter, Component, Output } from '@angular/core';
 
 import { TitleService } from '../../services';
 
