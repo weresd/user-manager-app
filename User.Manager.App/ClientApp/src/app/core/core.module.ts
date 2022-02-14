@@ -3,9 +3,12 @@ import { NgModule } from '@angular/core';
 import { MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { MatButtonModule, MatIconModule, MatListModule, MatMenuModule, MatProgressBarModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { Storages, LocalStorage } from './storages';
 
 import { UserMenuComponent } from './components';
 import { BodyComponent, HeaderComponent, MainMenuComponent, PageNotFoundComponent, SpinnerComponent } from './components';
+import { UserRepository, GroupRepository } from './entities';
+import { SharedModule } from '@app/shared';
 
 @NgModule({
     declarations: [
@@ -17,6 +20,8 @@ import { BodyComponent, HeaderComponent, MainMenuComponent, PageNotFoundComponen
         UserMenuComponent,
     ],
     imports: [
+        CommonModule,
+        SharedModule,
         RouterModule,
         MatToolbarModule,
         MatIconModule,
@@ -25,13 +30,17 @@ import { BodyComponent, HeaderComponent, MainMenuComponent, PageNotFoundComponen
         MatListModule,
         MatSidenavModule,
         MatMenuModule,
-        MatMenuModule,
-        CommonModule
+        MatMenuModule
     ],
     exports: [
         BodyComponent,
         PageNotFoundComponent,
     ],
-    providers: []
+    providers: [
+        UserRepository,
+        GroupRepository,
+        Storages,
+        LocalStorage
+    ]
 })
 export class CoreModule { }

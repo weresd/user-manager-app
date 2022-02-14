@@ -3,7 +3,7 @@
         <button mat-icon-button (click)="burgerClick.emit(true)">
             <mat-icon>menu</mat-icon>
         </button>
-        <span class="toolbar__title">{{ titleService.title | async }}</span>
+        <span class="toolbar__title">{{ titleService.title$ | async }}</span>
         <span class="toolbar__filler"></span>
         <app-user-menu class="app-header__user-menu"></app-user-menu>
     </mat-toolbar>

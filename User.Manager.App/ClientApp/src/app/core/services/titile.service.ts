@@ -12,11 +12,11 @@ export class TitleService
      *
      * @type {BehaviorSubject<string>}
      */
-    public readonly $title: BehaviorSubject<string> = new BehaviorSubject<string>('');
+    public readonly title$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
     /**
      * Constructor.
-     * 
+     *
      * @param {Title} browserTitle
      */
     public constructor(public browserTitle: Title)
@@ -26,7 +26,7 @@ export class TitleService
 
     /**
      * Sets title.
-     * 
+     *
      * @param {string} title
      *
      * @returns {void}
@@ -34,6 +34,6 @@ export class TitleService
     public setTitle(title: string): void
     {
         this.browserTitle.setTitle(title);
-        this.$title.next(title);
+        this.title$.next(title);
     }
 }
