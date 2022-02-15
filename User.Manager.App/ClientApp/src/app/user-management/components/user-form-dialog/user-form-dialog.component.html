@@ -1,0 +1,22 @@
+<div class="app-user-form-dialog">
+    <h3 mat-dialog-title>User {{ user.id === null ? 'Creation' : 'Editing' }}</h3>
+
+    <form class="example-form" [formGroup]="formGroup" mat-dialog-content>
+        <mat-form-field>
+            <input matInput placeholder="User name" [formControl]="formGroup.get('name')" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Login" [formControl]="formGroup.get('login')" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Email" [formControl]="formGroup.get('email')" />
+        </mat-form-field>
+    </form>
+
+    <app-dialog-buttons mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="save()" [disabled]="formGroup.invalid">Save</button>
+        <button mat-button [mat-dialog-close]="false">Cancel</button>
+    </app-dialog-buttons>
+</div>

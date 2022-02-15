@@ -1,0 +1,5 @@
+@import "components/entities-changer/entities-changer.theme.scss";
+
+@mixin app-shared-module-theme($theme) {
+    @include app-entities-changer-component-theme($theme);
+}

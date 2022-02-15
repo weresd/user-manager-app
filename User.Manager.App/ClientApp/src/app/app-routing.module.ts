@@ -5,6 +5,15 @@ import { PageNotFoundComponent } from './core';
 
 const routes: Routes = [
     {
+        path: '',
+        redirectTo: 'user-management',
+        pathMatch: 'full'
+    },
+    {
+        path: 'user-management',
+        loadChildren: () => import('./user-management').then(m => m.UserManagementModule)
+    },
+    {
         path: '**',
         component: PageNotFoundComponent
     }

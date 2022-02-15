@@ -1,0 +1,40 @@
+<div class="app-user-management-dashboard">
+    <div class="app-user-management-dashboard__toolbar">
+        <mat-menu #dashboardTools="matMenu">
+            <button mat-menu-item (click)="openEditUserDialog(null)">Add user</button>
+            <button mat-menu-item (click)="openEditGroupDialog(null)">Add group</button>
+        </mat-menu>
+
+        <button mat-raised-button [matMenuTriggerFor]="dashboardTools">
+            <mat-icon>add</mat-icon>
+            <span>Add</span>
+        </button>
+
+        <button mat-raised-button *ngIf="selectedEntity != null" (click)="deleteSelectedEntity()">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+        </button>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="app-user-management-dashboard__row">
+        <div class="app-user-management-dashboard__entities">
+            <app-entities-changer
+                [entities]="entityManagmentDataSource.users"
+                title="Local Users"
+                entityIcon="person_outline"
+                [selectedEntity]="selectedEntity"
+                (entityChanged)="entityChangeHandler($event)"
+            ></app-entities-changer>
+            <app-entities-changer
+                [entities]="entityManagmentDataSource.groups"
+                title="Local Groups"
+                entityIcon="account_box"
+                [selectedEntity]="selectedEntity"
+                (entityChanged)="entityChangeHandler($event)"
+            ></app-entities-changer>
+        </div>
+        <div class="app-user-management-dashboard__tools">
+            <h1>user-management-dashboard</h1>
+        </div>
+    </div>
+</div>

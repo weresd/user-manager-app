@@ -1,0 +1,14 @@
+<div class="app-group-form-dialog">
+    <h3 mat-dialog-title>Group {{ group.id === null ? 'Creation' : 'Editing' }}</h3>
+
+    <form class="example-form" [formGroup]="formGroup" mat-dialog-content>
+        <mat-form-field>
+            <input matInput placeholder="Group name" [formControl]="formGroup.get('name')" />
+        </mat-form-field>
+    </form>
+
+    <app-dialog-buttons mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="save()" [disabled]="formGroup.invalid">Save</button>
+        <button mat-button [mat-dialog-close]="false">Cancel</button>
+    </app-dialog-buttons>
+</div>

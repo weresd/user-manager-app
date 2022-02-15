@@ -1,0 +1,16 @@
+.app-dialog-buttons {
+    padding-bottom: 20px;
+    width: 100%;
+
+    &__left {
+        text-align: left;
+    }
+
+    &__right {
+        text-align: right;
+    }
+
+    &__center {
+        text-align: center;
+    }
+}

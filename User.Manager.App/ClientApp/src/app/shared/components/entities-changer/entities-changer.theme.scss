@@ -1,0 +1,15 @@
+@import "~@angular/material/theming";
+
+@mixin app-entities-changer-component-theme($theme) {
+    $primary: map-get($theme, primary);
+
+    .app-entities-changer {
+        &__item.selected {
+            background-color: mat-color($primary);
+        }
+
+        &__item:hover {
+            background-color: mat-color($primary, default, .8);
+        }
+    }
+}

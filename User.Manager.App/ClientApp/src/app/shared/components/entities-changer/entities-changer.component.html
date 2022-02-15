@@ -1,0 +1,20 @@
+<div class="app-entities-changer">
+    <mat-divider></mat-divider>
+    <div class="app-entities-changer__header">
+        <mat-icon>storage</mat-icon>
+        <p>{{ title }}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-list>
+        <mat-list-item
+            *ngFor="let entity of entities"
+            class="app-entities-changer__item"
+            [class.selected]="selectedEntity != null && selectedEntity.id == entity.id"
+            (click)="change(entity)"
+        >
+            <mat-icon *ngIf="entityIcon != null">{{ entityIcon }}</mat-icon>
+            <span>{{ entity.name }}</span>
+        </mat-list-item>
+    </mat-list>
+    <mat-divider></mat-divider>
+</div>

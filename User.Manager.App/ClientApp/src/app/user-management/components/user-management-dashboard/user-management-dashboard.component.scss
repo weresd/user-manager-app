@@ -1,0 +1,28 @@
+@import "../../../../styles/smart-grid.scss";
+
+.app-user-management-dashboard {
+    &__toolbar {
+        @include col();
+        @include size(24);
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        button {
+            margin-left: 15px;
+        }
+    }
+
+    &__row {
+        @include row-flex();
+    }
+
+    &__entities {
+        @include col();
+        @include size(8);
+    }
+
+    &__tools {
+        @include col();
+        @include size(16);
+    }
+}
