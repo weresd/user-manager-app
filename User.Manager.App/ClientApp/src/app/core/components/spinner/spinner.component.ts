@@ -11,7 +11,7 @@ export class SpinnerComponent
 {
     /**
      * Constructor.
-     * 
+     *
      * @param {SpinnerService} spinnerService
      */
     public constructor(private spinnerService: SpinnerService)
@@ -26,7 +26,7 @@ export class SpinnerComponent
      *
      *  @returns {string}
      */
-    public get mode()
+    public get mode(): string
     {
         return this.spinnerService.displaying ? 'query' : 'determinate';
     }
