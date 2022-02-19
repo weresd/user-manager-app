@@ -1,4 +1,4 @@
-import { isString } from 'util';
+import { isArray, isString } from 'util';
 import { INamedEntity } from '@app/shared';
 
 import { EntityBase } from '../entity.base';
@@ -27,6 +27,20 @@ export class User extends EntityBase implements INamedEntity
     public email: string;
 
     /**
+     * List of user permissions.
+     *
+     * @type {string[]}
+     */
+    public permissions: string[] = [];
+
+    /**
+     * List of user groups.
+     *
+     * @type {string[]}
+     */
+    public groups: string[] = [];
+
+    /**
      * Constructor.
      *
      * @param {any} data
@@ -48,6 +62,16 @@ export class User extends EntityBase implements INamedEntity
         if (data.email && isString(data.email))
         {
             this.email = data.email;
+        }
+
+        if (data.permissions && isArray(data.permissions))
+        {
+            this.permissions = data.permissions;
+        }
+
+        if (data.groups && isArray(data.groups))
+        {
+            this.groups = data.groups;
         }
     }
 }

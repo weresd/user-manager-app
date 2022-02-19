@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { Storages, LocalStorage } from './storages';
 import { UserMenuComponent } from './components';
 import { BodyComponent, HeaderComponent, MainMenuComponent, PageNotFoundComponent, SpinnerComponent } from './components';
-import { UserRepository, GroupRepository, RepositoriesFabrica } from './entities';
+import { UserRepository, GroupRepository, RepositoriesFabrica, PermissionRepository } from './entities';
 import { SharedModule } from '@app/shared';
 
 @NgModule({
@@ -39,6 +39,7 @@ import { SharedModule } from '@app/shared';
     providers: [
         UserRepository,
         GroupRepository,
+        PermissionRepository,
         Storages,
         LocalStorage,
         RepositoriesFabrica

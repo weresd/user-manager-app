@@ -37,11 +37,12 @@ export class UserManagementDashboardResolver implements Resolve<any>
 
         return forkJoin([
             this.repositoriesFabrica.getUserRepository().find(),
-            this.repositoriesFabrica.getGroupRepository().find()
+            this.repositoriesFabrica.getGroupRepository().find(),
+            this.repositoriesFabrica.getPermissionRepository().find()
         ])
             .pipe(
-                map(([users, groups]) => {
-                    return { users: users, groups: groups };
+                map(([users, groups, permissions]) => {
+                    return { users: users, groups: groups, permissions: permissions };
                 }),
                 tap(() => this.titleService.setTitle('User Management'))
             );

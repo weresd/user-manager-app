@@ -1,7 +1,7 @@
 import { MatSnackBar } from '@angular/material';
 import { take } from 'rxjs/operators';
 
-import { Group, RepositoriesFabrica, SpinnerService, User } from '@app/core';
+import { Group, Permission, RepositoriesFabrica, SpinnerService, User } from '@app/core';
 
 export class EntityManagmentDataSource
 {
@@ -20,6 +20,13 @@ export class EntityManagmentDataSource
     public groups: Group[] = [];
 
     /**
+     * Permissions.
+     *
+     * @type {Permission[]}
+     */
+    public permissions: Permission[] = [];
+
+    /**
      * Constructor.
      *
      * @param {RepositoriesFabrica} repositoriesFabrica
@@ -33,30 +40,6 @@ export class EntityManagmentDataSource
     )
     {
         return;
-    }
-
-    /**
-     * Set user list.
-     *
-     * @param {User[]} users
-     *
-     * @returns {void}
-     */
-    public setUsers(users: User[]): void
-    {
-        this.users = users;
-    }
-
-    /**
-     * Set group list.
-     *
-     * @param {Group[]} users
-     *
-     * @returns {void}
-     */
-    public setGroups(groups: Group[]): void
-    {
-        this.groups = groups;
     }
 
     /**
@@ -127,7 +110,7 @@ export class EntityManagmentDataSource
      *
      * @returns {void}
      */
-    public deleteGroup(group: Group)
+    public deleteGroup(group: Group): void
     {
         this.spinnerService.show();
         this.repositoriesFabrica
@@ -143,5 +126,25 @@ export class EntityManagmentDataSource
                     this.snackBarService.open('Error deleting group', 'ok', { duration: 3000 });
                 }
             );
+    }
+
+    /**
+     * Returns all user permissions ids.
+     *
+     * @param {User} user
+     *
+     * @returns {string[]}
+     */
+    public getUserActivePermissionIds(user: User): string[]
+    {
+        const userGroupsPermissions = [];
+
+        this.groups
+            .filter(g => user.groups.indexOf(g.id) !== -1)
+            .map(g => userGroupsPermissions.push(...g.permissions));
+
+        return this.permissions
+            .map(p => p.id)
+            .filter(p => userGroupsPermissions.indexOf(p) !== -1 || user.permissions.indexOf(p) !== -1);
     }
 }

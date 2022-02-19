@@ -1,23 +1,16 @@
-import { isArray, isString } from 'util';
+import { isString } from 'util';
 import { INamedEntity } from '@app/shared';
 
 import { EntityBase } from '../entity.base';
 
-export class Group extends EntityBase implements INamedEntity
+export class Permission extends EntityBase implements INamedEntity
 {
     /**
-     * Group name.
+     * Permission name.
      *
      * @type {string}
      */
     public name: string;
-
-    /**
-     * List of group permissions.
-     *
-     * @type {string[]}
-     */
-     public permissions: string[] = [];
 
     /**
      * Constructor.
@@ -31,11 +24,6 @@ export class Group extends EntityBase implements INamedEntity
         if (data.name && isString(data.name))
         {
             this.name = data.name;
-        }
-
-        if (data.permissions && isArray(data.permissions))
-        {
-            this.permissions = data.permissions;
         }
     }
 }

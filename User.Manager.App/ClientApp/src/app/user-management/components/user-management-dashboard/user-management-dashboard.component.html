@@ -54,9 +54,44 @@
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
+            <mat-accordion *ngIf="hasSelectedEntity">
+                <mat-expansion-panel expanded="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ isUserSelected ? 'User' : 'Group' }} Permissions</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-permissions-changer
+                        [selectedPermissions]="selectedEntity.permissions"
+                        [permissions]="entityManagmentDataSource.permissions"
+                        (permisssionsChanged)="permisssionChangeHandler($event)"
+                    ></app-permissions-changer>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion *ngIf="hasSelectedEntity && isUserSelected">
+                <mat-expansion-panel expanded="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Effective Permissions</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-permissions-changer
+                        [selectedPermissions]="entityManagmentDataSource.getUserActivePermissionIds(selectedEntity)"
+                        [permissions]="entityManagmentDataSource.permissions"
+                        readonly="true"
+                    ></app-permissions-changer>
+                </mat-expansion-panel>
+            </mat-accordion>
         </div>
         <div class="app-user-management-dashboard__tools">
-            <h1>user-management-dashboard</h1>
+            <mat-accordion *ngIf="hasSelectedEntity && isUserSelected">
+                <mat-expansion-panel expanded="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Group Membership</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-groups-changer
+                        [selectedGroups]="selectedEntity.groups"
+                        [groups]="entityManagmentDataSource.groups"
+                        (groupsChanged)="groupChangeHandler($event)"
+                    ></app-groups-changer>
+                </mat-expansion-panel>
+            </mat-accordion>
         </div>
     </div>
 </div>

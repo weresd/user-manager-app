@@ -1,8 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 
+import { PermissionRepository } from './permission';
 import { UserRepository } from './user';
-import { Storages } from '../storages';
 import { GroupRepository } from './group';
+import { Storages } from '../storages';
 
 @Injectable()
 export class RepositoriesFabrica
@@ -35,5 +36,15 @@ export class RepositoriesFabrica
     public getGroupRepository(): GroupRepository
     {
         return new GroupRepository(this.storageService);
+    }
+
+    /**
+     * Returns permission repository.
+     *
+     * @returns {PermissionRepository}
+     */
+    public getPermissionRepository(): PermissionRepository
+    {
+        return new PermissionRepository(this.storageService);
     }
 }

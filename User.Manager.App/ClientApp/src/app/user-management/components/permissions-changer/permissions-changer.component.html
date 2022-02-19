@@ -1,0 +1,12 @@
+<div class="app-permissions-changer">
+    <mat-list>
+        <mat-list-item *ngFor="let permission of permissions">
+            <mat-checkbox
+                [checked]="isChecked(permission)"
+                (change)="change(permission, $event)"
+                [value]="permission.id"
+                [disabled]="readonly"
+            >{{ permission.name }}</mat-checkbox>
+        </mat-list-item>
+    </mat-list>
+</div>

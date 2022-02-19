@@ -1,4 +1,4 @@
-import { OnInit, Component, OnDestroy } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { take, tap } from 'rxjs/operators';
@@ -80,8 +80,9 @@ export class UserManagementDashboardComponent implements OnInit
                 tap(() => this.spinnerService.hide())
             )
             .subscribe(routeData => {
-                this.entityManagmentDataSource.setUsers(routeData.requestData.users);
-                this.entityManagmentDataSource.setGroups(routeData.requestData.groups);
+                this.entityManagmentDataSource.users = routeData.requestData.users;
+                this.entityManagmentDataSource.groups = routeData.requestData.groups;
+                this.entityManagmentDataSource.permissions = routeData.requestData.permissions;
             });
     }
 
@@ -123,12 +124,12 @@ export class UserManagementDashboardComponent implements OnInit
                     return;
                 }
 
-                if (this.selectedEntity instanceof User) {
+                if (this.isUserSelected) {
                     this.entityManagmentDataSource.deleteUser(this.selectedEntity);
                     this.selectedEntity = null;
                 }
 
-                if (this.selectedEntity instanceof Group) {
+                if (this.isGroupSelected) {
                     this.entityManagmentDataSource.deleteGroup(this.selectedEntity);
                     this.selectedEntity = null;
                 }
@@ -187,5 +188,55 @@ export class UserManagementDashboardComponent implements OnInit
                 this.entityManagmentDataSource.reloadGroups();
             }
         });
+    }
+
+    /**
+     * Permisssion change handler.
+     *
+     * @param {string[]} permissionIds
+     *
+     * @returns {void}
+     */
+    public permisssionChangeHandler(permissionIds: string[]): void
+    {
+        if (this.isUserSelected) {
+            this.spinnerService.show();
+            this.selectedEntity.permissions = permissionIds;
+            this.repositoriesFabrica
+                .getUserRepository()
+                .save(this.selectedEntity)
+                .pipe(take(1))
+                .subscribe(() => this.spinnerService.hide());
+        }
+
+        if (this.isGroupSelected) {
+            this.spinnerService.show();
+            this.selectedEntity.permissions = permissionIds;
+            this.repositoriesFabrica
+                .getGroupRepository()
+                .save(this.selectedEntity)
+                .pipe(take(1))
+                .subscribe(() => this.spinnerService.hide());
+        }
+    }
+
+    /**
+     * Grooup change handler.
+     *
+     * @param {string[]} groupIds
+     *
+     * @returns {void}
+     */
+    public groupChangeHandler(groupIds: string[]): void
+    {
+        if (this.isUserSelected) {
+            this.spinnerService.show();
+            this.selectedEntity.groups = groupIds;
+            this.repositoriesFabrica
+                .getUserRepository()
+                .save(this.selectedEntity)
+                .pipe(take(1))
+                .subscribe(() => this.spinnerService.hide());
+        }
     }
 }

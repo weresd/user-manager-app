@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatDialogModule, MatDividerModule,  MatExpansionModule,  MatFormFieldModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
+import { MatDividerModule, MatExpansionModule,  MatFormFieldModule, MatListModule } from '@angular/material';
 import { MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule, MatGridListModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
 import { CoreModule } from '@app/core';
 import { ConfirmDialogComponent, SharedModule } from '@app/shared';
-import { GroupFormDialogComponent, UserViewComponent, GroupViewComponent } from './components';
+import { GroupsChangerComponent } from './components';
+import { GroupFormDialogComponent, UserViewComponent, GroupViewComponent, PermissionsChangerComponent } from './components';
 import { UserManagementDashboardComponent, UserManagementDashboardResolver, UserFormDialogComponent } from './components';
 import { UserManagementRoutingModule } from './user-management-routing.module';
 
@@ -17,7 +19,9 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
         UserFormDialogComponent,
         GroupFormDialogComponent,
         UserViewComponent,
-        GroupViewComponent
+        GroupViewComponent,
+        PermissionsChangerComponent,
+        GroupsChangerComponent
     ],
     imports: [
         CoreModule,
@@ -36,7 +40,8 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
         MatInputModule,
         MatFormFieldModule,
         MatExpansionModule,
-        MatListModule
+        MatListModule,
+        MatCheckboxModule
     ],
     exports: [],
     providers: [
