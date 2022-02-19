@@ -14,7 +14,7 @@ export class SpinnerComponent
      *
      * @param {SpinnerService} spinnerService
      */
-    public constructor(private spinnerService: SpinnerService)
+    public constructor(public spinnerService: SpinnerService)
     {
         return;
     }

@@ -22,7 +22,7 @@ export class UserManagementDashboardComponent implements OnInit
      *
      * @type {User | Group | null}
      */
-    public selectedEntity: User | Group | null = null;
+    public selectedEntity: any | User | Group | null = null;
 
     /**
      * Data source.
