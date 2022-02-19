@@ -23,7 +23,5 @@ export class PermissionRepository extends RepositoryBase<Permission>
     public constructor(@Inject(Storages) storageService: Storages)
     {
         super(storageService);
-
-        return;
     }
 }

@@ -114,6 +114,7 @@ export class EntityManagementDataSource
                 () => {
                     this.spinnerService.hide();
                     this.reloadUsers();
+                    this.snackBarService.open('User deleted', 'ok', { duration: 3000 });
                 },
                 () => {
                     this.snackBarService.open('Error deleting user', 'ok', { duration: 3000 });
@@ -139,6 +140,7 @@ export class EntityManagementDataSource
                 () => {
                     this.spinnerService.hide();
                     this.reloadGroups();
+                    this.snackBarService.open('Group deleted', 'ok', { duration: 3000 });
                 },
                 () => {
                     this.snackBarService.open('Error deleting group', 'ok', { duration: 3000 });

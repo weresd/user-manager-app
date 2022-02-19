@@ -27,7 +27,5 @@ export class ConfirmDialogComponent
     )
     {
         this.confirmText = data.confirmText;
-
-        return;
     }
 }

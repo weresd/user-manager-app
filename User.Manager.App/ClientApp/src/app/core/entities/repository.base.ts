@@ -45,8 +45,6 @@ export abstract class RepositoryBase<TEntity extends EntityBase> implements IWri
         {
             throw new Error('No supported storages found.');
         }
-
-        return;
     }
 
     /**

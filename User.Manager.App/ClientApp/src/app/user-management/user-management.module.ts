@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatCheckboxModule, MatDialogModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialogModule, MatSidenavModule, MatTooltipModule } from '@angular/material';
 import { MatDividerModule, MatExpansionModule,  MatFormFieldModule, MatListModule } from '@angular/material';
 import { MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule, MatGridListModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
@@ -43,7 +43,8 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
         MatExpansionModule,
         MatListModule,
         MatCheckboxModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatTooltipModule
     ],
     exports: [],
     providers: [

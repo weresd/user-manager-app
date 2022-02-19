@@ -23,7 +23,5 @@ export class GroupRepository extends RepositoryBase<Group>
     public constructor(@Inject(Storages) storageService: Storages)
     {
         super(storageService);
-
-        return;
     }
 }

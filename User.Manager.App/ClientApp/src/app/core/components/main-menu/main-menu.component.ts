@@ -15,7 +15,7 @@ export class MainMenuComponent
      * Emit when a menu item is clicked.
      *
      * @type {EventEmitter<MenuItem>}
-     */ 
+     */
     @Output() public itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
     /**
@@ -29,7 +29,7 @@ export class MainMenuComponent
 
     /**
      * Emits event "itemClick" and navigate to menu item route.
-     * 
+     *
      * @param {MenuItem} menuItem
      *
      * @returns {void}
@@ -37,7 +37,5 @@ export class MainMenuComponent
     public changeItem(menuItem: MenuItem): void
     {
         this.itemClick.emit(menuItem);
-
-        return;
     }
 }

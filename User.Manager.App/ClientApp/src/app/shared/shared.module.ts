@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatDialogModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule } from '@angular/material';
+import { MatInputModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatDividerModule, MatFormFieldModule, MatIconModule } from '@angular/material';
 
 import { EntitiesChangerComponent, ConfirmDialogComponent, DialogButtonsComponent } from './components';
 import { SearchBarComponent } from './components';

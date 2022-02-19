@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { take } from 'rxjs/operators';
@@ -40,6 +40,13 @@ export class PermissionsManagementDialogComponent implements OnInit
      * @type {FormGroup}
      */
     public formGroup: FormGroup;
+
+    /**
+     * Link to html element with name.
+     *
+     * @type {ElementRef}
+     */
+    @ViewChild('nameElement', { static: true }) public nameElement: ElementRef;
 
     /**
      * Constructor.
@@ -90,6 +97,7 @@ export class PermissionsManagementDialogComponent implements OnInit
     public edit(permission: Permission): void
     {
         this.editingPermission = permission;
+        this.nameElement.nativeElement.focus();
         this.resetForm();
     }
 
@@ -158,6 +166,7 @@ export class PermissionsManagementDialogComponent implements OnInit
     public addNew(): void
     {
         this.editingPermission = new Permission();
+        this.nameElement.nativeElement.focus();
         this.resetForm();
     }
 

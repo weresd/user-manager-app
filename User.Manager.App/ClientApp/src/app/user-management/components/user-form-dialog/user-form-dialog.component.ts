@@ -41,8 +41,6 @@ export class UserFormDialogComponent implements OnInit
     )
     {
         this.user = data.user === null ? new User() : data.user;
-
-        return;
     }
 
     /**

@@ -42,8 +42,6 @@ export class GroupFormDialogComponent implements OnInit
     )
     {
         this.group = data.group === null ? new Group() : data.group;
-
-        return;
     }
 
     /**

@@ -21,7 +21,5 @@ export class EntityBase
         {
             this.id = data.id;
         }
-
-        return;
     }
 }

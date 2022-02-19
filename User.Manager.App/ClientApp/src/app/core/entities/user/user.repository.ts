@@ -23,7 +23,5 @@ export class UserRepository extends RepositoryBase<User>
     public constructor(@Inject(Storages) storageService: Storages)
     {
         super(storageService);
-
-        return;
     }
 }

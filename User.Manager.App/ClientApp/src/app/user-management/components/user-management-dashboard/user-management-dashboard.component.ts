@@ -6,9 +6,9 @@ import { take, tap } from 'rxjs/operators';
 import { ConfirmDialogComponent } from '@app/shared';
 import {Group, RepositoriesFabrica, SpinnerService, User } from '@app/core';
 import { EntityManagementDataSource } from './entity-management.datasource';
-import { UserFormDialogComponent } from '../user-form-dialog/user-form-dialog.component';
-import { GroupFormDialogComponent } from '../group-form-dialog/group-form-dialog.component';
-import { PermissionsManagementDialogComponent } from '../permissions-management-dialog/permissions-management-dialog.component';
+import { UserFormDialogComponent } from '../user-form-dialog';
+import { GroupFormDialogComponent } from '../group-form-dialog';
+import { PermissionsManagementDialogComponent } from '../permissions-management-dialog';
 
 @Component({
     selector: 'app-user-management-dashboard',
@@ -31,16 +31,31 @@ export class UserManagementDashboardComponent implements OnInit
      */
     public entityManagementDataSource: EntityManagementDataSource;
 
+    /**
+     * Presence of the selected entity.
+     *
+     * @type {boolean}
+     */
     public get hasSelectedEntity(): boolean
     {
         return this.selectedEntity !== null;
     }
 
+    /**
+     * Selected entity is a user.
+     *
+     * @type {boolean}
+     */
     public get isUserSelected(): boolean
     {
         return this.selectedEntity instanceof User;
     }
 
+    /**
+     * Selected entity is a group.
+     *
+     * @type {boolean}
+     */
     public get isGroupSelected(): boolean
     {
         return this.selectedEntity instanceof Group;

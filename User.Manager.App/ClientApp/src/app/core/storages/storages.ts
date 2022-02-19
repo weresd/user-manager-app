@@ -29,8 +29,6 @@ export class Storages
             this.localStorage,
             this.memeoryStorage,
         ];
-
-        return;
     }
 
     /**
