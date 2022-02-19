@@ -1,14 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatDialogModule, MatDividerModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule } from '@angular/material';
 
 import { EntitiesChangerComponent, ConfirmDialogComponent, DialogButtonsComponent } from './components';
+import { SearchBarComponent } from './components';
+import { NamedEntitySearchPipe } from './pipes';
 
 @NgModule({
     declarations: [
         EntitiesChangerComponent,
         ConfirmDialogComponent,
-        DialogButtonsComponent
+        DialogButtonsComponent,
+        SearchBarComponent,
+        NamedEntitySearchPipe
     ],
     imports: [
         CommonModule,
@@ -16,12 +20,16 @@ import { EntitiesChangerComponent, ConfirmDialogComponent, DialogButtonsComponen
         MatIconModule,
         MatDialogModule,
         MatButtonModule,
-        MatDividerModule
+        MatDividerModule,
+        MatFormFieldModule,
+        MatInputModule
     ],
     exports: [
         EntitiesChangerComponent,
         ConfirmDialogComponent,
-        DialogButtonsComponent
+        DialogButtonsComponent,
+        SearchBarComponent,
+        NamedEntitySearchPipe
     ],
     providers: []
 })

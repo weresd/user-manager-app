@@ -18,15 +18,16 @@
     <mat-divider></mat-divider>
     <div class="app-user-management-dashboard__row">
         <div class="app-user-management-dashboard__entities">
+            <app-search-bar #entitySearch></app-search-bar>
             <app-entities-changer
-                [entities]="entityManagmentDataSource.users"
+                [entities]="entityManagmentDataSource.users | namedEntitySearch: entitySearch.searchString"
                 title="Local Users"
                 entityIcon="person_outline"
                 [selectedEntity]="selectedEntity"
                 (entityChanged)="entityChangeHandler($event)"
             ></app-entities-changer>
             <app-entities-changer
-                [entities]="entityManagmentDataSource.groups"
+                [entities]="entityManagmentDataSource.groups | namedEntitySearch: entitySearch.searchString"
                 title="Local Groups"
                 entityIcon="account_box"
                 [selectedEntity]="selectedEntity"
@@ -85,9 +86,10 @@
                     <mat-expansion-panel-header>
                         <mat-panel-title>Group Membership</mat-panel-title>
                     </mat-expansion-panel-header>
+                    <app-search-bar #groupSearch></app-search-bar>
                     <app-groups-changer
                         [selectedGroups]="selectedEntity.groups"
-                        [groups]="entityManagmentDataSource.groups"
+                        [groups]="entityManagmentDataSource.groups | namedEntitySearch: groupSearch.searchString"
                         (groupsChanged)="groupChangeHandler($event)"
                     ></app-groups-changer>
                 </mat-expansion-panel>
