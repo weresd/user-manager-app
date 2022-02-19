@@ -5,9 +5,10 @@ import { take, tap } from 'rxjs/operators';
 
 import { ConfirmDialogComponent } from '@app/shared';
 import {Group, RepositoriesFabrica, SpinnerService, User } from '@app/core';
-import { EntityManagmentDataSource } from './entity-managment.datasource';
+import { EntityManagementDataSource } from './entity-management.datasource';
 import { UserFormDialogComponent } from '../user-form-dialog/user-form-dialog.component';
 import { GroupFormDialogComponent } from '../group-form-dialog/group-form-dialog.component';
+import { PermissionsManagementDialogComponent } from '../permissions-management-dialog/permissions-management-dialog.component';
 
 @Component({
     selector: 'app-user-management-dashboard',
@@ -26,9 +27,9 @@ export class UserManagementDashboardComponent implements OnInit
     /**
      * Data source.
      *
-     * @type {EntityManagmentDataSource}
+     * @type {EntityManagementDataSource}
      */
-    public entityManagmentDataSource: EntityManagmentDataSource;
+    public entityManagementDataSource: EntityManagementDataSource;
 
     public get hasSelectedEntity(): boolean
     {
@@ -62,7 +63,7 @@ export class UserManagementDashboardComponent implements OnInit
         private snackBarService: MatSnackBar
     )
     {
-        this.entityManagmentDataSource = new EntityManagmentDataSource(
+        this.entityManagementDataSource = new EntityManagementDataSource(
             this.repositoriesFabrica,
             this.spinnerService,
             this.snackBarService
@@ -80,9 +81,9 @@ export class UserManagementDashboardComponent implements OnInit
                 tap(() => this.spinnerService.hide())
             )
             .subscribe(routeData => {
-                this.entityManagmentDataSource.users = routeData.requestData.users;
-                this.entityManagmentDataSource.groups = routeData.requestData.groups;
-                this.entityManagmentDataSource.permissions = routeData.requestData.permissions;
+                this.entityManagementDataSource.users = routeData.requestData.users;
+                this.entityManagementDataSource.groups = routeData.requestData.groups;
+                this.entityManagementDataSource.permissions = routeData.requestData.permissions;
             });
     }
 
@@ -124,13 +125,13 @@ export class UserManagementDashboardComponent implements OnInit
                     return;
                 }
 
-                if (this.isUserSelected) {
-                    this.entityManagmentDataSource.deleteUser(this.selectedEntity);
+                if (this.selectedEntity instanceof User) {
+                    this.entityManagementDataSource.deleteUser(this.selectedEntity);
                     this.selectedEntity = null;
                 }
 
-                if (this.isGroupSelected) {
-                    this.entityManagmentDataSource.deleteGroup(this.selectedEntity);
+                if (this.selectedEntity instanceof Group) {
+                    this.entityManagementDataSource.deleteGroup(this.selectedEntity);
                     this.selectedEntity = null;
                 }
             });
@@ -146,21 +147,21 @@ export class UserManagementDashboardComponent implements OnInit
     public openEditUserDialog(user: User | null): void
     {
         this.dialogService.open(
-            UserFormDialogComponent,
-            {
-                data: {
-                    user: user
+                UserFormDialogComponent,
+                {
+                    data: {
+                        user: user
+                    }
                 }
-            }
-        )
-        .afterClosed()
-        .pipe(take(1))
-        .subscribe(result => {
-            if (result) {
-                this.snackBarService.open('User saved', 'ok', { duration: 3000 });
-                this.entityManagmentDataSource.reloadUsers();
-            }
-        });
+            )
+            .afterClosed()
+            .pipe(take(1))
+            .subscribe(result => {
+                if (result) {
+                    this.snackBarService.open('User saved', 'ok', { duration: 3000 });
+                    this.entityManagementDataSource.reloadUsers();
+                }
+            });
     }
 
     /**
@@ -173,21 +174,39 @@ export class UserManagementDashboardComponent implements OnInit
     public openEditGroupDialog(group: Group | null): void
     {
         this.dialogService.open(
-            GroupFormDialogComponent,
-            {
-                data: {
-                    group: group
+                GroupFormDialogComponent,
+                {
+                    data: {
+                        group: group
+                    }
                 }
-            }
-        )
-        .afterClosed()
-        .pipe(take(1))
-        .subscribe(result => {
-            if (result) {
-                this.snackBarService.open('Group saved', 'ok', { duration: 3000 });
-                this.entityManagmentDataSource.reloadGroups();
-            }
-        });
+            )
+            .afterClosed()
+            .pipe(take(1))
+            .subscribe(result => {
+                if (result) {
+                    this.snackBarService.open('Group saved', 'ok', { duration: 3000 });
+                    this.entityManagementDataSource.reloadGroups();
+                }
+            });
+    }
+
+    /**
+     * Opens a dialog box for editing or creating a group.
+     *
+     * @returns {void}
+     */
+    public openPermissionsManagementDialog(): void
+    {
+        this.dialogService
+            .open(PermissionsManagementDialogComponent)
+            .afterClosed()
+            .pipe(take(1))
+            .subscribe(result => {
+                if (result) {
+                    this.entityManagementDataSource.reloadPermissions();
+                }
+            });
     }
 
     /**
@@ -199,7 +218,7 @@ export class UserManagementDashboardComponent implements OnInit
      */
     public permisssionChangeHandler(permissionIds: string[]): void
     {
-        if (this.isUserSelected) {
+        if (this.selectedEntity instanceof User) {
             this.spinnerService.show();
             this.selectedEntity.permissions = permissionIds;
             this.repositoriesFabrica
@@ -209,7 +228,7 @@ export class UserManagementDashboardComponent implements OnInit
                 .subscribe(() => this.spinnerService.hide());
         }
 
-        if (this.isGroupSelected) {
+        if (this.selectedEntity instanceof Group) {
             this.spinnerService.show();
             this.selectedEntity.permissions = permissionIds;
             this.repositoriesFabrica
@@ -229,7 +248,7 @@ export class UserManagementDashboardComponent implements OnInit
      */
     public groupChangeHandler(groupIds: string[]): void
     {
-        if (this.isUserSelected) {
+        if (this.selectedEntity instanceof User) {
             this.spinnerService.show();
             this.selectedEntity.groups = groupIds;
             this.repositoriesFabrica

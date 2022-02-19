@@ -3,7 +3,7 @@ import { take } from 'rxjs/operators';
 
 import { Group, Permission, RepositoriesFabrica, SpinnerService, User } from '@app/core';
 
-export class EntityManagmentDataSource
+export class EntityManagementDataSource
 {
     /**
      * Users.
@@ -74,6 +74,24 @@ export class EntityManagmentDataSource
             .pipe(take(1))
             .subscribe(groups => {
                 this.groups = groups;
+                this.spinnerService.hide();
+            });
+    }
+
+    /**
+     * Reloads permission list from repository.
+     *
+     * @returns {void}
+     */
+    public reloadPermissions(): void
+    {
+        this.spinnerService.show();
+        this.repositoriesFabrica
+            .getPermissionRepository()
+            .find()
+            .pipe(take(1))
+            .subscribe(permissions => {
+                this.permissions = permissions;
                 this.spinnerService.hide();
             });
     }

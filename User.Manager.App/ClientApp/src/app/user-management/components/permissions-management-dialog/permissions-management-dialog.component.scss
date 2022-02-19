@@ -1,0 +1,11 @@
+.app-permissions-management-dialog {
+    &__form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__form-field {
+        flex-basis: 100%;
+    }
+}

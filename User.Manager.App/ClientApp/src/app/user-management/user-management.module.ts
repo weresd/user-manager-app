@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialogModule, MatSidenavModule } from '@angular/material';
 import { MatDividerModule, MatExpansionModule,  MatFormFieldModule, MatListModule } from '@angular/material';
 import { MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule, MatGridListModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
 import { CoreModule } from '@app/core';
 import { ConfirmDialogComponent, SharedModule } from '@app/shared';
-import { GroupsChangerComponent } from './components';
+import { GroupsChangerComponent, PermissionsManagementDialogComponent } from './components';
 import { GroupFormDialogComponent, UserViewComponent, GroupViewComponent, PermissionsChangerComponent } from './components';
 import { UserManagementDashboardComponent, UserManagementDashboardResolver, UserFormDialogComponent } from './components';
 import { UserManagementRoutingModule } from './user-management-routing.module';
@@ -21,7 +21,8 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
         UserViewComponent,
         GroupViewComponent,
         PermissionsChangerComponent,
-        GroupsChangerComponent
+        GroupsChangerComponent,
+        PermissionsManagementDialogComponent
     ],
     imports: [
         CoreModule,
@@ -41,7 +42,8 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
         MatFormFieldModule,
         MatExpansionModule,
         MatListModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSidenavModule
     ],
     exports: [],
     providers: [
@@ -50,7 +52,8 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
     entryComponents: [
         ConfirmDialogComponent,
         UserFormDialogComponent,
-        GroupFormDialogComponent
+        GroupFormDialogComponent,
+        PermissionsManagementDialogComponent
     ]
 })
 export class UserManagementModule { }

@@ -5,16 +5,17 @@
         <p>{{ title }}</p>
     </div>
     <mat-divider></mat-divider>
-    <mat-list>
-        <mat-list-item
-            *ngFor="let entity of entities"
-            class="app-entities-changer__item"
-            [class.selected]="selectedEntity != null && selectedEntity.id == entity.id"
-            (click)="change(entity)"
-        >
-            <mat-icon *ngIf="entityIcon != null">{{ entityIcon }}</mat-icon>
-            <span>{{ entity.name }}</span>
-        </mat-list-item>
+    <mat-list class="app-entities-changer__items">
+        <div class="app-entities-changer__item-wrapper" *ngFor="let entity of entities">
+            <mat-list-item
+                class="app-entities-changer__item"
+                [class.selected]="selectedEntity != null && selectedEntity.id == entity.id"
+                (click)="change(entity)"
+            >
+                <mat-icon *ngIf="entityIcon != null">{{ entityIcon }}</mat-icon>
+                <span>{{ entity.name }}</span>
+            </mat-list-item>
+        </div>
     </mat-list>
     <mat-divider></mat-divider>
 </div>

@@ -1,33 +1,44 @@
 <div class="app-user-management-dashboard">
     <div class="app-user-management-dashboard__toolbar">
-        <mat-menu #dashboardTools="matMenu">
-            <button mat-menu-item (click)="openEditUserDialog(null)">Add user</button>
-            <button mat-menu-item (click)="openEditGroupDialog(null)">Add group</button>
-        </mat-menu>
+        <div class="app-user-management-dashboard__toolbar-first">
+            <mat-menu #dashboardTools="matMenu">
+                <button mat-menu-item (click)="openEditUserDialog(null)">Add user</button>
+                <button mat-menu-item (click)="openEditGroupDialog(null)">Add group</button>
+            </mat-menu>
 
-        <button mat-raised-button [matMenuTriggerFor]="dashboardTools">
-            <mat-icon>add</mat-icon>
-            <span>Add</span>
-        </button>
+            <button mat-raised-button [matMenuTriggerFor]="dashboardTools">
+                <mat-icon>add</mat-icon>
+                <span>Add</span>
+            </button>
 
-        <button mat-raised-button *ngIf="selectedEntity != null" (click)="deleteSelectedEntity()">
-            <mat-icon>delete</mat-icon>
-            <span>Delete</span>
-        </button>
+            <button mat-raised-button *ngIf="selectedEntity != null" (click)="deleteSelectedEntity()">
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+            </button>
+        </div>
+
+        <span class="app-user-management-dashboard__toolbar-filler"></span>
+
+        <div class="app-user-management-dashboard__toolbar-last">
+            <button mat-raised-button (click)="openPermissionsManagementDialog()">
+                <mat-icon>article</mat-icon>
+                <span>Permissions Management</span>
+            </button>
+        </div>
     </div>
     <mat-divider></mat-divider>
     <div class="app-user-management-dashboard__row">
         <div class="app-user-management-dashboard__entities">
             <app-search-bar #entitySearch></app-search-bar>
             <app-entities-changer
-                [entities]="entityManagmentDataSource.users | namedEntitySearch: entitySearch.searchString"
+                [entities]="entityManagementDataSource.users | namedEntitySearch: entitySearch.searchString"
                 title="Local Users"
                 entityIcon="person_outline"
                 [selectedEntity]="selectedEntity"
                 (entityChanged)="entityChangeHandler($event)"
             ></app-entities-changer>
             <app-entities-changer
-                [entities]="entityManagmentDataSource.groups | namedEntitySearch: entitySearch.searchString"
+                [entities]="entityManagementDataSource.groups | namedEntitySearch: entitySearch.searchString"
                 title="Local Groups"
                 entityIcon="account_box"
                 [selectedEntity]="selectedEntity"
@@ -62,7 +73,7 @@
                     </mat-expansion-panel-header>
                     <app-permissions-changer
                         [selectedPermissions]="selectedEntity.permissions"
-                        [permissions]="entityManagmentDataSource.permissions"
+                        [permissions]="entityManagementDataSource.permissions"
                         (permisssionsChanged)="permisssionChangeHandler($event)"
                     ></app-permissions-changer>
                 </mat-expansion-panel>
@@ -73,8 +84,8 @@
                         <mat-panel-title>Effective Permissions</mat-panel-title>
                     </mat-expansion-panel-header>
                     <app-permissions-changer
-                        [selectedPermissions]="entityManagmentDataSource.getUserActivePermissionIds(selectedEntity)"
-                        [permissions]="entityManagmentDataSource.permissions"
+                        [selectedPermissions]="entityManagementDataSource.getUserActivePermissionIds(selectedEntity)"
+                        [permissions]="entityManagementDataSource.permissions"
                         readonly="true"
                     ></app-permissions-changer>
                 </mat-expansion-panel>
@@ -89,7 +100,7 @@
                     <app-search-bar #groupSearch></app-search-bar>
                     <app-groups-changer
                         [selectedGroups]="selectedEntity.groups"
-                        [groups]="entityManagmentDataSource.groups | namedEntitySearch: groupSearch.searchString"
+                        [groups]="entityManagementDataSource.groups | namedEntitySearch: groupSearch.searchString"
                         (groupsChanged)="groupChangeHandler($event)"
                     ></app-groups-changer>
                 </mat-expansion-panel>

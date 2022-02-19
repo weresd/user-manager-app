@@ -6,9 +6,26 @@
         @include size(24);
         padding-top: 15px;
         padding-bottom: 15px;
+        display: flex;
+
+        @include sm-block() {
+            display: block;
+        }
 
         button {
             margin-left: 15px;
+        }
+
+        &-last {
+            padding-right: 15px;
+
+            @include sm-block() {
+                padding-top: 15px;
+            }
+        }
+
+        &-filler {
+            flex-grow: 1;
         }
     }
 
@@ -18,12 +35,14 @@
 
     &__entities {
         @include col();
-        @include size(8);
+        @include size-sm(24);
+        @include size(6);
     }
 
     &__tools {
         @include col();
-        @include size(8);
+        @include size-sm(24);
+        @include size(9);
     }
 
     &__profile-toolbar {

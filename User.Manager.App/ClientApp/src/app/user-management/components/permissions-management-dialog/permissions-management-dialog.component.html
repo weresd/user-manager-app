@@ -1,0 +1,40 @@
+<div class="app-permissions-management-dialog">
+    <h3 mat-dialog-title>Permissions Management</h3>
+
+    <app-search-bar #permissionSearch></app-search-bar>
+
+    <div mat-dialog-content>
+        <mat-list>
+            <mat-list-item *ngFor="let permission of permissions | namedEntitySearch: permissionSearch.searchString">
+                <p mat-line>{{ permission.name }}</p>
+                <button mat-icon-button (click)="edit(permission)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="openDeleteDialog(permission)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <p mat-line>add new</p>
+                <button mat-icon-button (click)="addNew()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <mat-divider></mat-divider>
+    <form class="app-permissions-management-dialog__form" [formGroup]="formGroup" >
+        <mat-form-field class="app-permissions-management-dialog__form-field">
+            <input matInput placeholder="Permission name" [formControl]="formGroup.get('name')" autocomplete="off" />
+        </mat-form-field>
+        <button mat-icon-button (click)="save()">
+            <mat-icon>save</mat-icon>
+        </button>
+    </form>
+    <mat-divider></mat-divider>
+
+    <app-dialog-buttons mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="hasChanged">Close</button>
+    </app-dialog-buttons>
+</div>

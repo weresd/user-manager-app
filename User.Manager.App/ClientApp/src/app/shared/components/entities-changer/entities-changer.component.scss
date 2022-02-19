@@ -11,12 +11,19 @@
         }
     }
 
+    &__item-wrapper {
+        padding-left: 30px;
+    }
+
     &__item {
-        margin-left: 30px;
         cursor: pointer;
 
         span {
             padding-left: 10px;
         }
+    }
+
+    &__items {
+        padding: 0;
     }
 }
