@@ -34,6 +34,28 @@
             ></app-entities-changer>
         </div>
         <div class="app-user-management-dashboard__tools">
+            <mat-accordion *ngIf="hasSelectedEntity">
+                <mat-expansion-panel *ngIf="isUserSelected" expanded="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>User Profile</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-user-view [user]="selectedEntity"></app-user-view>
+                    <div class="app-user-management-dashboard__profile-toolbar">
+                        <button mat-raised-button (click)="openEditUserDialog(selectedEntity)">Edit</button>
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel *ngIf="isGroupSelected" expanded="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Group Profile</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-group-view [group]="selectedEntity"></app-group-view>
+                    <div class="app-user-management-dashboard__profile-toolbar">
+                        <button mat-raised-button (click)="openEditGroupDialog(selectedEntity)">Edit</button>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <div class="app-user-management-dashboard__tools">
             <h1>user-management-dashboard</h1>
         </div>
     </div>

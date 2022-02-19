@@ -54,7 +54,7 @@ export abstract class RepositoryBase<TEntity extends EntityBase> implements IWri
      */
     public save(item: TEntity): Observable<TEntity>
     {
-        let items = this.getStorageData().filter(i => i.id !== item.id);
+        let items = this.getStorageData();
 
         if (item.id == null)
         {

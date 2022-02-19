@@ -30,6 +30,21 @@ export class UserManagementDashboardComponent implements OnInit
      */
     public entityManagmentDataSource: EntityManagmentDataSource;
 
+    public get hasSelectedEntity(): boolean
+    {
+        return this.selectedEntity !== null;
+    }
+
+    public get isUserSelected(): boolean
+    {
+        return this.selectedEntity instanceof User;
+    }
+
+    public get isGroupSelected(): boolean
+    {
+        return this.selectedEntity instanceof Group;
+    }
+
     /**
      * Constructor.
      *

@@ -23,6 +23,10 @@
 
     &__tools {
         @include col();
-        @include size(16);
+        @include size(8);
+    }
+
+    &__profile-toolbar {
+        text-align: right;
     }
 }
