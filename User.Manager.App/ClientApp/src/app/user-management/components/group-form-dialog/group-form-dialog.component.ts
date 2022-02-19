@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { take } from 'rxjs/operators';
 
-import { Group, GroupRepository, SpinnerService, } from '@app/core';
+import { Group, RepositoriesFabrica, SpinnerService, } from '@app/core';
 
 @Component({
     selector: 'app-group-form-dialog',
@@ -31,14 +31,14 @@ export class GroupFormDialogComponent implements OnInit
      *
      * @param {MatDialogRef<UserFormDialogComponent>} dialogRef
      * @param {SpinnerService} spinnerService
-     * @param {UserRepository} userRepository
+     * @param {RepositoriesFabrica} repositoriesFabrica
      * @param {any} data
      */
     public constructor(
         private dialogRef: MatDialogRef<GroupFormDialogComponent>,
         private spinnerService: SpinnerService,
-        private groupRepository: GroupRepository,
-        @Inject(MAT_DIALOG_DATA) private data: any
+        private repositoriesFabrica: RepositoriesFabrica,
+        @Inject(MAT_DIALOG_DATA) data: any
     )
     {
         this.group = data.group === null ? new Group() : data.group;
@@ -82,7 +82,8 @@ export class GroupFormDialogComponent implements OnInit
 
         this.group.name = this.formGroup.get('name').value;
 
-        this.groupRepository
+        this.repositoriesFabrica
+            .getGroupRepository()
             .save(this.group)
             .pipe(take(1))
             .subscribe(group => {

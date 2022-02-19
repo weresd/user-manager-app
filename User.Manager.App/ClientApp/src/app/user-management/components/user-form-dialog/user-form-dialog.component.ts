@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { SpinnerService, User, UserRepository } from '@app/core';
+import { RepositoriesFabrica, SpinnerService, User, UserRepository } from '@app/core';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -30,14 +30,14 @@ export class UserFormDialogComponent implements OnInit
      *
      * @param {MatDialogRef<UserFormDialogComponent>} dialogRef
      * @param {SpinnerService} spinnerService
-     * @param {UserRepository} userRepository
+     * @param {RepositoriesFabrica} repositoriesFabrica
      * @param {any} data
      */
     public constructor(
         private dialogRef: MatDialogRef<UserFormDialogComponent>,
         private spinnerService: SpinnerService,
-        private userRepository: UserRepository,
-        @Inject(MAT_DIALOG_DATA) private data: any
+        private repositoriesFabrica: RepositoriesFabrica,
+        @Inject(MAT_DIALOG_DATA) data: any
     )
     {
         this.user = data.user === null ? new User() : data.user;
@@ -85,7 +85,8 @@ export class UserFormDialogComponent implements OnInit
         this.user.login = this.formGroup.get('login').value;
         this.user.email = this.formGroup.get('email').value;
 
-        this.userRepository
+        this.repositoriesFabrica
+            .getUserRepository()
             .save(this.user)
             .pipe(take(1))
             .subscribe(user => {

@@ -9,7 +9,7 @@ import { IStorage } from '../storages/istorage';
 import { Storages } from '../storages/storages';
 import { JsonHelper } from '../helpers';
 
-export abstract class BaseRepository<TEntity extends EntityBase> implements IWrite<TEntity>, IRead<TEntity>
+export abstract class RepositoryBase<TEntity extends EntityBase> implements IWrite<TEntity>, IRead<TEntity>
 {
     /**
      * Data storage.

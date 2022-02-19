@@ -20,7 +20,7 @@ export class HeaderComponent
 
     /**
      * Constructor.
-     * 
+     *
      * @param {TitleService} titleService
      */
     public constructor(public titleService: TitleService)

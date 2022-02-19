@@ -2,7 +2,7 @@ export class MenuItem
 {
     /**
      * Constructor.
-     * 
+     *
      * @param {string} title
      * @param {string} route
      */

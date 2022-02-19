@@ -14,14 +14,14 @@ export class AuthService
      *
      * @type {BehaviorSubject<User|null>}
      */
-    public readonly $user: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+    public readonly user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
 
     /**
      * Constructor.
      */
     public constructor()
     {
-        this.$user.next(new User({
+        this.user$.next(new User({
             login: 'admin',
             email: ''
         }));

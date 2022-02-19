@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatDialogModule, MatDividerModule,  MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatDividerModule,  MatFormFieldModule } from '@angular/material';
+import { MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule, MatGridListModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
 import { CoreModule } from '@app/core';

@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
 
 import { Storages } from '../../storages/storages';
-import { BaseRepository } from '../base.repository';
+import { RepositoryBase } from '../repository.base';
 import { User } from './user';
 
 @Injectable()
-export class UserRepository extends BaseRepository<User>
+export class UserRepository extends RepositoryBase<User>
 {
     /**
      * @inheritdoc

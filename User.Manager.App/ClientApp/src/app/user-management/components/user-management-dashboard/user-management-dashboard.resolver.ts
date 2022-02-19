@@ -3,18 +3,21 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { GroupRepository, SpinnerService, TitleService, UserRepository } from '@app/core';
+import { RepositoriesFabrica, SpinnerService, TitleService } from '@app/core';
 
 @Injectable()
 export class UserManagementDashboardResolver implements Resolve<any>
 {
     /**
      * Constructor.
+     *
+     * @param {TitleService} titleService
+     * @param {RepositoriesFabrica} repositoriesFabrica
+     * @param {SpinnerService} spinnerService
      */
     public constructor(
         private titleService: TitleService,
-        private userRepository: UserRepository,
-        private groupRepository: GroupRepository,
+        private repositoriesFabrica: RepositoriesFabrica,
         private spinnerService: SpinnerService
     )
     {
@@ -33,8 +36,8 @@ export class UserManagementDashboardResolver implements Resolve<any>
         this.spinnerService.show();
 
         return forkJoin([
-            this.userRepository.find(),
-            this.groupRepository.find()
+            this.repositoriesFabrica.getUserRepository().find(),
+            this.repositoriesFabrica.getGroupRepository().find()
         ])
             .pipe(
                 map(([users, groups]) => {

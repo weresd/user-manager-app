@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { take, tap } from 'rxjs/operators';
 
 import { ConfirmDialogComponent } from '@app/shared';
-import {Group, GroupRepository, SpinnerService, User, UserRepository } from '@app/core';
+import {Group, RepositoriesFabrica, SpinnerService, User } from '@app/core';
 import { EntityManagmentDataSource } from './entity-managment.datasource';
 import { UserFormDialogComponent } from '../user-form-dialog/user-form-dialog.component';
 import { GroupFormDialogComponent } from '../group-form-dialog/group-form-dialog.component';
@@ -34,24 +34,21 @@ export class UserManagementDashboardComponent implements OnInit
      * Constructor.
      *
      * @param {ActivatedRoute} activatedRoute
-     * @param {UserRepository} userRepository
-     * @param {GroupRepository} groupRepository
+     * @param {RepositoriesFabrica} repositoriesFabrica
      * @param {SpinnerService} spinnerService
      * @param {MatDialog} dialogService
      * @param {MatSnackBar} snackBarService
      */
     public constructor(
         private activatedRoute: ActivatedRoute,
-        private userRepository: UserRepository,
-        private groupRepository: GroupRepository,
+        private repositoriesFabrica: RepositoriesFabrica,
         private spinnerService: SpinnerService,
         private dialogService: MatDialog,
         private snackBarService: MatSnackBar
     )
     {
         this.entityManagmentDataSource = new EntityManagmentDataSource(
-            this.userRepository,
-            this.groupRepository,
+            this.repositoriesFabrica,
             this.spinnerService,
             this.snackBarService
         );

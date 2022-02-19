@@ -13,7 +13,7 @@ export class UserMenuComponent implements OnInit
 {
     /**
      * Position for drop down user menu items.
-     * 
+     *
      *  @type {MenuPositionX}
      */
     @Input() xPosition: MenuPositionX = 'before';
@@ -37,7 +37,7 @@ export class UserMenuComponent implements OnInit
 
     /**
      * Constructor.
-     * 
+     *
      * @param {AuthService} authService
      */
     public constructor(private authService: AuthService)
@@ -47,11 +47,11 @@ export class UserMenuComponent implements OnInit
 
     /**
      * Subscribes to an authorized user change.
-     * 
+     *
      * {@inheritdoc}
      */
     public ngOnInit(): void
     {
-        this.authService.$user.subscribe(user => this.user = user);
+        this.authService.user$.subscribe(user => this.user = user);
     }
 }

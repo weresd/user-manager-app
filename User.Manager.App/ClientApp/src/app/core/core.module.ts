@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { MatButtonModule, MatIconModule, MatListModule, MatMenuModule, MatProgressBarModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
-import { Storages, LocalStorage } from './storages';
 
+import { Storages, LocalStorage } from './storages';
 import { UserMenuComponent } from './components';
 import { BodyComponent, HeaderComponent, MainMenuComponent, PageNotFoundComponent, SpinnerComponent } from './components';
-import { UserRepository, GroupRepository } from './entities';
+import { UserRepository, GroupRepository, RepositoriesFabrica } from './entities';
 import { SharedModule } from '@app/shared';
 
 @NgModule({
@@ -40,7 +40,8 @@ import { SharedModule } from '@app/shared';
         UserRepository,
         GroupRepository,
         Storages,
-        LocalStorage
+        LocalStorage,
+        RepositoriesFabrica
     ]
 })
 export class CoreModule { }

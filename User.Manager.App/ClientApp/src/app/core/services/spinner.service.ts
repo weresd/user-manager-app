@@ -7,7 +7,7 @@ export class SpinnerService
 {
     /**
      * Spinner display flag.
-     * 
+     *
      * @type {boolean}
      */
     private displayingSpinner: boolean = false;

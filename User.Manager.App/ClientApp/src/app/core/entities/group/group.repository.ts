@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
 
 import { Storages } from '../../storages/storages';
-import { BaseRepository } from '../base.repository';
+import { RepositoryBase } from '../repository.base';
 import { Group } from './group';
 
 @Injectable()
-export class GroupRepository extends BaseRepository<Group>
+export class GroupRepository extends RepositoryBase<Group>
 {
     /**
      * @inheritdoc

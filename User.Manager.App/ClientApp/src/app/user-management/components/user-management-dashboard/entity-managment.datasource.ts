@@ -1,7 +1,7 @@
 import { MatSnackBar } from '@angular/material';
 import { take } from 'rxjs/operators';
 
-import { Group, GroupRepository, SpinnerService, User, UserRepository } from '@app/core';
+import { Group, RepositoriesFabrica, SpinnerService, User } from '@app/core';
 
 export class EntityManagmentDataSource
 {
@@ -22,14 +22,12 @@ export class EntityManagmentDataSource
     /**
      * Constructor.
      *
-     * @param {UserRepository} userRepository
-     * @param {GroupRepository} groupRepository
+     * @param {RepositoriesFabrica} repositoriesFabrica
      * @param {SpinnerService} spinnerService
      * @param {MatSnackBar} snackBarService
      */
     public constructor(
-        private userRepository: UserRepository,
-        private groupRepository: GroupRepository,
+        private repositoriesFabrica: RepositoriesFabrica,
         private spinnerService: SpinnerService,
         private snackBarService: MatSnackBar
     )
@@ -69,7 +67,8 @@ export class EntityManagmentDataSource
     public reloadUsers(): void
     {
         this.spinnerService.show();
-        this.userRepository
+        this.repositoriesFabrica
+            .getUserRepository()
             .find()
             .pipe(take(1))
             .subscribe(users => {
@@ -86,7 +85,8 @@ export class EntityManagmentDataSource
     public reloadGroups(): void
     {
         this.spinnerService.show();
-        this.groupRepository
+        this.repositoriesFabrica
+            .getGroupRepository()
             .find()
             .pipe(take(1))
             .subscribe(groups => {
@@ -105,7 +105,8 @@ export class EntityManagmentDataSource
     public deleteUser(user: User): void
     {
         this.spinnerService.show();
-        this.userRepository
+        this.repositoriesFabrica
+            .getUserRepository()
             .delete(user)
             .pipe(take(1))
             .subscribe(
@@ -129,7 +130,8 @@ export class EntityManagmentDataSource
     public deleteGroup(group: Group)
     {
         this.spinnerService.show();
-        this.groupRepository
+        this.repositoriesFabrica
+            .getGroupRepository()
             .delete(group)
             .pipe(take(1))
             .subscribe(
