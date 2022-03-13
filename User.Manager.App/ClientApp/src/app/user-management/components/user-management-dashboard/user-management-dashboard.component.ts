@@ -180,6 +180,26 @@ export class UserManagementDashboardComponent implements OnInit
     }
 
     /**
+     * Edites selected entity.
+     *
+     * @returns {void}
+     */
+    public editSelectedEntity(): void
+    {
+        if (this.selectedEntity === null) {
+            return;
+        }
+
+        if (this.selectedEntity instanceof User) {
+            this.openEditUserDialog(this.selectedEntity);
+        }
+
+        if (this.selectedEntity instanceof Group) {
+            this.openEditGroupDialog(this.selectedEntity);
+        }
+    }
+
+    /**
      * Opens a dialog box for editing or creating a user.
      *
      * @param {User | null} user

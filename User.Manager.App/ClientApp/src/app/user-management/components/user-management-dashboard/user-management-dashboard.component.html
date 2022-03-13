@@ -11,6 +11,11 @@
                 <span>Add</span>
             </button>
 
+            <button mat-raised-button *ngIf="selectedEntity != null" (click)="editSelectedEntity()">
+                <mat-icon color="accent">edit</mat-icon>
+                <span>Edit</span>
+            </button>
+
             <button mat-raised-button *ngIf="selectedEntity != null" (click)="deleteSelectedEntity()">
                 <mat-icon color="accent">delete</mat-icon>
                 <span>Delete</span>
@@ -55,18 +60,6 @@
                     <div class="app-user-management-dashboard__profile-wrapper">
                         <app-user-view [user]="selectedEntity"></app-user-view>
                     </div>
-                    <div class="app-user-management-dashboard__profile-toolbar" header-additional>
-                        <button
-                            mat-icon-button
-                            [matMenuTriggerFor]="userProfileMenu"
-                            class="app-user-management-dashboard__profile-toolbar-menu"
-                        >
-                            <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #userProfileMenu="matMenu">
-                            <button mat-menu-item (click)="openEditUserDialog(selectedEntity)">Edit user</button>
-                        </mat-menu>
-                    </div>
                 </app-expansion-panel>
                 <app-expansion-panel
                     *ngIf="isGroupSelected"
@@ -76,18 +69,6 @@
                 >
                     <div class="app-user-management-dashboard__profile-wrapper">
                         <app-group-view [group]="selectedEntity"></app-group-view>
-                    </div>
-                    <div class="app-user-management-dashboard__profile-toolbar" header-additional>
-                        <button
-                            mat-icon-button
-                            [matMenuTriggerFor]="groupMenu"
-                            class="app-user-management-dashboard__profile-toolbar-menu"
-                        >
-                            <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #groupMenu="matMenu">
-                            <button mat-menu-item (click)="openEditGroupDialog(selectedEntity)">Edit group</button>
-                        </mat-menu>
                     </div>
                 </app-expansion-panel>
             </div>
