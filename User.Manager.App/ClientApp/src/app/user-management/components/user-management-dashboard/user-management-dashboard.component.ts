@@ -21,7 +21,7 @@ export class UserManagementDashboardComponent implements OnInit
      *
      * @type {User | Group | null}
      */
-    public selectedEntity: any | User | Group | null = null;
+    public selectedEntity: User | Group | null = null;
 
     /**
      * Data source.
@@ -29,6 +29,34 @@ export class UserManagementDashboardComponent implements OnInit
      * @type {EntityManagementDataSource}
      */
     public entityManagementDataSource: EntityManagementDataSource;
+
+    /**
+     * State of user and group profile extension panels.
+     *
+     * @type {boolean}
+     */
+    public viewExpansionPanelState: boolean = true;
+
+    /**
+     * State of group and user permissions extension panels.
+     *
+     * @type {boolean}
+     */
+    public permissionsExpansionPanelState: boolean = true;
+
+    /**
+     * State of user effective permissions extension panels.
+     *
+     * @type {boolean}
+     */
+    public effectivePermissionsExpansionPanelState: boolean = true;
+
+    /**
+     * Status of group list extension Panels.
+     *
+     * @type {boolean}
+     */
+    public groupsExpansionPanelState: boolean = true;
 
     /**
      * Presence of the selected entity.

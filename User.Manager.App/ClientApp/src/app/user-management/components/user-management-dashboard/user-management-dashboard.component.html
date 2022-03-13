@@ -46,7 +46,12 @@
         </div>
         <div class="app-user-management-dashboard__tools">
             <div *ngIf="hasSelectedEntity">
-                <app-expansion-panel *ngIf="isUserSelected" expanded="true" title="User Profile">
+                <app-expansion-panel
+                    *ngIf="isUserSelected"
+                    [expanded]="viewExpansionPanelState"
+                    title="User Profile"
+                    (expandedChange)="viewExpansionPanelState = $event"
+                >
                     <div class="app-user-management-dashboard__profile-wrapper">
                         <app-user-view [user]="selectedEntity"></app-user-view>
                     </div>
@@ -63,7 +68,12 @@
                         </mat-menu>
                     </div>
                 </app-expansion-panel>
-                <app-expansion-panel *ngIf="isGroupSelected" expanded="true" title="Group Profile">
+                <app-expansion-panel
+                    *ngIf="isGroupSelected"
+                    [expanded]="viewExpansionPanelState"
+                    title="Group Profile"
+                    (expandedChange)="viewExpansionPanelState = $event"
+                >
                     <div class="app-user-management-dashboard__profile-wrapper">
                         <app-group-view [group]="selectedEntity"></app-group-view>
                     </div>
@@ -82,7 +92,7 @@
                 </app-expansion-panel>
             </div>
             <div *ngIf="hasSelectedEntity">
-                <app-expansion-panel expanded="true" [title]="(isUserSelected ? 'User' : 'Group') + 'Permissions'">
+                <app-expansion-panel [expanded]="permissionsExpansionPanelState" [title]="(isUserSelected ? 'User' : 'Group') + ' Permissions'">
                     <app-permissions-changer
                         [selectedPermissions]="selectedEntity.permissions"
                         [permissions]="entityManagementDataSource.permissions"
@@ -91,7 +101,11 @@
                 </app-expansion-panel>
             </div>
             <div *ngIf="hasSelectedEntity && isUserSelected">
-                <app-expansion-panel expanded="true" title="Effective Permissions">
+                <app-expansion-panel
+                    [expanded]="effectivePermissionsExpansionPanelState"
+                    title="Effective Permissions"
+                    (expandedChange)="effectivePermissionsExpansionPanelState = $event"
+                >
                     <app-permissions-changer
                         [selectedPermissions]="entityManagementDataSource.getUserActivePermissionIds(selectedEntity)"
                         [permissions]="entityManagementDataSource.permissions"
@@ -102,7 +116,11 @@
         </div>
         <div class="app-user-management-dashboard__tools">
             <div *ngIf="hasSelectedEntity && isUserSelected">
-                <app-expansion-panel expanded="true" title="Group Membership">
+                <app-expansion-panel
+                    [expanded]="groupsExpansionPanelState"
+                    title="Group Membership"
+                    (expandedChange)="groupsExpansionPanelState = $event"
+                >
                     <app-search-bar #groupSearch></app-search-bar>
                     <mat-divider></mat-divider>
                     <app-groups-changer

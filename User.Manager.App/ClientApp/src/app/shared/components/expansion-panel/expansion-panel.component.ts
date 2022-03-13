@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'app-expansion-panel',
@@ -26,13 +26,35 @@ export class ExpansionPanelComponent
      * @type {boolean}
      */
     @Input() public expanded: boolean = true;
+
+    /**
+     * Panel title.
+     */
     @Input() public title: string;
 
+    /**
+     * Output event "expandedChange".
+     *
+     * @type {EventEmitter<boolean>}
+     */
+    @Output() public expandedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    /**
+     * Toggles the expanded state of the panel.
+     *
+     * @returns {void}
+     */
     public toggle(): void
     {
         this.expanded = !this.expanded;
+        this.expandedChange.emit(this.expanded);
     }
 
+    /**
+     * Returns the name of the animation trigger based on the expanded state of the panel.
+     *
+     * @returns {string}
+     */
     public get expandeState(): string
     {
         return this.expanded ? 'expanded' : 'collapsed';
