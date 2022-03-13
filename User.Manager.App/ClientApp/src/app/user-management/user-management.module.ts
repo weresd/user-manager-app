@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 
 import { CoreModule } from '@app/core';
 import { ConfirmDialogComponent, SharedModule } from '@app/shared';
-import { GroupsChangerComponent, PermissionsManagementDialogComponent } from './components';
+import { GroupsChangerComponent } from './components';
 import { GroupFormDialogComponent, UserViewComponent, GroupViewComponent, PermissionsChangerComponent } from './components';
 import { UserManagementDashboardComponent, UserManagementDashboardResolver, UserFormDialogComponent } from './components';
 import { UserManagementRoutingModule } from './user-management-routing.module';
@@ -21,8 +21,7 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
         UserViewComponent,
         GroupViewComponent,
         PermissionsChangerComponent,
-        GroupsChangerComponent,
-        PermissionsManagementDialogComponent
+        GroupsChangerComponent
     ],
     imports: [
         CoreModule,
@@ -53,8 +52,7 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
     entryComponents: [
         ConfirmDialogComponent,
         UserFormDialogComponent,
-        GroupFormDialogComponent,
-        PermissionsManagementDialogComponent
+        GroupFormDialogComponent
     ]
 })
 export class UserManagementModule { }

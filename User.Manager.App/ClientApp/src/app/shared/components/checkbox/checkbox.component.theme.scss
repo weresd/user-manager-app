@@ -1,0 +1,22 @@
+@import "~@angular/material/theming";
+
+@mixin app-checkbox-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+
+    .app-checkbox {
+        &--checked {
+            background-color: mat-color($accent, lighter, .4);
+        }
+
+        &__fake-checkbox {
+            background-color: mat-color($primary, default, .5);
+        }
+
+        &__checkbox:disabled + &__fake-checkbox {
+            mat-icon {
+                color: mat-color($primary);
+            }
+        }
+    }
+}

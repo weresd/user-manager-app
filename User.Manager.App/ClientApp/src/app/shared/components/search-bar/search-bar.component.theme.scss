@@ -1,0 +1,17 @@
+@import "../../../../styles/smart-grid.scss";
+
+@mixin app-search-bar-component-theme($theme) {
+    $accent: map-get($theme, accent);
+    $primary: map-get($theme, primary);
+
+    .app-search-bar {
+        &__search-icon,
+        &__clear-icon {
+            color: mat-color($accent);
+        }
+
+        &__input {
+            border-color: mat-color($primary, default, .5);
+        }
+    }
+}

@@ -1,0 +1,12 @@
+@import "../../../../styles/smart-grid.scss";
+
+@mixin app-expansion-panel-component-theme($theme) {
+    $primary: map-get($theme, primary);
+
+    .app-expansion-panel {
+        &__header {
+            background-color: mat-color($primary, darker, .8);
+            color: mat-color($primary, darker-contrast);
+        }
+    }
+}

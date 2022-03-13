@@ -1,5 +1,11 @@
+@import "../../../../styles/mixins.scss";
+
 .app-user-menu {
     &__main-button {
         width: 100%;
+
+        mat-icon {
+            @include mat-icon-size(32px);
+        }
     }
 }

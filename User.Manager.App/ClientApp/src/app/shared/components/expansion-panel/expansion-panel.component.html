@@ -1,0 +1,17 @@
+<div class="app-expansion-panel">
+    <div class="app-expansion-panel__header">
+        <div class="app-expansion-panel__header-title" (click)="toggle()">
+            <mat-icon [@rotate]="expandeState">expand_more</mat-icon>
+            <span>{{ title }}</span>
+        </div>
+        <div class="app-expansion-panel__header-additional">
+            <ng-content select="[header-additional]"></ng-content>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div [@expande]="expandeState" class="app-expansion-panel__body">
+        <div class="app-expansion-panel__body-content">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

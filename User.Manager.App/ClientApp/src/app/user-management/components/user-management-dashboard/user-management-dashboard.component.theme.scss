@@ -1,0 +1,14 @@
+@import "../../../../styles/smart-grid.scss";
+
+@mixin app-user-management-dashboard-component-theme($theme) {
+    $primary: map-get($theme, primary);
+
+    .app-user-management-dashboard {
+        &__toolbar,
+        &__search-bar,
+        &__entities-changer,
+        &__tools {
+            background: mat-color($primary, lighter);
+        }
+    }
+}

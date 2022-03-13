@@ -8,7 +8,6 @@ import {Group, RepositoriesFabrica, SpinnerService, User } from '@app/core';
 import { EntityManagementDataSource } from './entity-management.datasource';
 import { UserFormDialogComponent } from '../user-form-dialog';
 import { GroupFormDialogComponent } from '../group-form-dialog';
-import { PermissionsManagementDialogComponent } from '../permissions-management-dialog';
 
 @Component({
     selector: 'app-user-management-dashboard',
@@ -202,24 +201,6 @@ export class UserManagementDashboardComponent implements OnInit
                 if (result) {
                     this.snackBarService.open('Group saved', 'ok', { duration: 3000 });
                     this.entityManagementDataSource.reloadGroups();
-                }
-            });
-    }
-
-    /**
-     * Opens a dialog box for editing or creating a group.
-     *
-     * @returns {void}
-     */
-    public openPermissionsManagementDialog(): void
-    {
-        this.dialogService
-            .open(PermissionsManagementDialogComponent)
-            .afterClosed()
-            .pipe(take(1))
-            .subscribe(result => {
-                if (result) {
-                    this.entityManagementDataSource.reloadPermissions();
                 }
             });
     }

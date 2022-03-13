@@ -1,6 +1,15 @@
 @import "../../../../styles/smart-grid.scss";
+@import "../../../../styles/mixins.scss";
+
+:host {
+    flex-grow: 1;
+}
 
 .app-user-management-dashboard {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
     &__toolbar {
         @include col();
         @include size(24);
@@ -14,13 +23,11 @@
 
         button {
             margin-left: 15px;
-        }
+            padding-top: 5px;
+            padding-bottom: 5px;
 
-        &-last {
-            padding-right: 15px;
-
-            @include sm-block() {
-                padding-top: 15px;
+            mat-icon {
+                @include mat-icon-size(32px);
             }
         }
 
@@ -30,6 +37,7 @@
     }
 
     &__row {
+        flex-grow: 1;
         @include row-flex();
     }
 
@@ -40,12 +48,29 @@
     }
 
     &__tools {
+        box-shadow: 1px 1px 1px 1px;
         @include col();
         @include size-sm(24);
         @include size(9);
     }
 
-    &__profile-toolbar {
-        text-align: right;
+    &__profile {
+        &-wrapper {
+            padding: 10px;
+        }
+
+        &-toolbar {
+            text-align: right;
+
+            &-menu {
+                height: 24px;
+                width: 24px;
+                line-height: 26px;
+
+                mat-icon {
+                    @include mat-icon-size(19px);
+                }
+            }
+        }
     }
 }

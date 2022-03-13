@@ -1,0 +1,27 @@
+.app-expansion-panel {
+    &__header {
+        display: flex;
+        flex-direction: row;
+        padding: 12px;
+
+        &-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: pointer;
+
+            span {
+                margin-left: 5px;
+            }
+        }
+
+        &-additional {
+            flex-grow: 1;
+        }
+    }
+
+    &__body {
+        overflow: hidden;
+    }
+}

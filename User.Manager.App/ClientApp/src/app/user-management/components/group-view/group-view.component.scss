@@ -1,5 +1,5 @@
 .app-group-view {
-    h4 {
-        text-align: left;
+    app-view-row:last-child {
+        padding-bottom: 0;
     }
 }

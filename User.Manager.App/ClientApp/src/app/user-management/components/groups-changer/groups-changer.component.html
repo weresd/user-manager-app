@@ -1,10 +1,9 @@
 <div class="app-groups-changer">
-    <mat-list>
-        <mat-list-item *ngFor="let group of groups">
-            <mat-checkbox
-                [checked]="isChecked(group)"
-                (change)="change(group, $event)"
-            >{{ group.name }}</mat-checkbox>
-        </mat-list-item>
-    </mat-list>
+    <ng-container *ngFor="let group of groups">
+        <app-checkbox
+            [checked]="isChecked(group)"
+            (changeValue)="change(group, $event)"
+        >{{ group.name }}</app-checkbox>
+        <mat-divider></mat-divider>
+    </ng-container>
 </div>

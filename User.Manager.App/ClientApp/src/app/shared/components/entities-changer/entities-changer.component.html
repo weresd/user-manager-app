@@ -1,7 +1,7 @@
 <div class="app-entities-changer">
     <mat-divider></mat-divider>
     <div class="app-entities-changer__header">
-        <mat-icon>storage</mat-icon>
+        <mat-icon color="accent">list</mat-icon>
         <p>{{ title }}</p>
     </div>
     <mat-divider></mat-divider>
@@ -12,7 +12,7 @@
                 [class.selected]="selectedEntity != null && selectedEntity.id == entity.id"
                 (click)="change(entity)"
             >
-                <mat-icon *ngIf="entityIcon != null">{{ entityIcon }}</mat-icon>
+                <mat-icon *ngIf="entityIcon != null" color="accent">{{ entityIcon }}</mat-icon>
                 <span>{{ entity.name }}</span>
             </mat-list-item>
         </div>

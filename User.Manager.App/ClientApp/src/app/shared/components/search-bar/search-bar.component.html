@@ -1,6 +1,9 @@
 <div class="app-search-bar">
-    <mat-form-field class="app-search-bar__field">
-        <mat-icon matPrefix>search</mat-icon>
-        <input matInput placeholder="Search" type="text" (input)="input($event)" autocomplete="off" />
-    </mat-form-field>
+    <span class="app-search-bar__search-icon">
+        <mat-icon>search</mat-icon>
+    </span>
+    <input #searchInput type="text" (input)="input($event)" autocomplete="off" class="app-search-bar__input" />
+    <button mat-icon-button class="app-search-bar__clear-icon" (click)="clear()" *ngIf="searchString != ''">
+        <mat-icon>close</mat-icon>
+    </button>
 </div>

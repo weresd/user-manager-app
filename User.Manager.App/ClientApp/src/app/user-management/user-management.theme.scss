@@ -1,0 +1,5 @@
+@import "components/user-management-dashboard/user-management-dashboard.component.theme.scss";
+
+@mixin app-user-management-module-theme($theme) {
+    @include app-user-management-dashboard-component-theme($theme);
+}

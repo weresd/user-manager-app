@@ -7,104 +7,111 @@
             </mat-menu>
 
             <button mat-raised-button [matMenuTriggerFor]="dashboardTools">
-                <mat-icon>add</mat-icon>
+                <mat-icon color="accent">add</mat-icon>
                 <span>Add</span>
             </button>
 
             <button mat-raised-button *ngIf="selectedEntity != null" (click)="deleteSelectedEntity()">
-                <mat-icon>delete</mat-icon>
+                <mat-icon color="accent">delete</mat-icon>
                 <span>Delete</span>
             </button>
         </div>
 
         <span class="app-user-management-dashboard__toolbar-filler"></span>
-
-        <div class="app-user-management-dashboard__toolbar-last">
-            <button mat-raised-button (click)="openPermissionsManagementDialog()">
-                <mat-icon>article</mat-icon>
-                <span>Permissions Management</span>
-            </button>
-        </div>
     </div>
     <mat-divider></mat-divider>
     <div class="app-user-management-dashboard__row">
         <div class="app-user-management-dashboard__entities">
-            <app-search-bar #entitySearch></app-search-bar>
-            <app-entities-changer
-                [entities]="entityManagementDataSource.users | namedEntitySearch: entitySearch.searchString"
-                title="Local Users"
-                entityIcon="person_outline"
-                [selectedEntity]="selectedEntity"
-                (entityChanged)="entityChangeHandler($event)"
-            ></app-entities-changer>
-            <app-entities-changer
-                [entities]="entityManagementDataSource.groups | namedEntitySearch: entitySearch.searchString"
-                title="Local Groups"
-                entityIcon="account_box"
-                [selectedEntity]="selectedEntity"
-                (entityChanged)="entityChangeHandler($event)"
-            ></app-entities-changer>
+            <div class="app-user-management-dashboard__search-bar">
+                <app-search-bar #entitySearch></app-search-bar>
+            </div>
+            <div class="app-user-management-dashboard__entities-changer">
+                <app-entities-changer
+                    [entities]="entityManagementDataSource.users | namedEntitySearch: entitySearch.searchString"
+                    title="Local Users"
+                    entityIcon="person_outline"
+                    [selectedEntity]="selectedEntity"
+                    (entityChanged)="entityChangeHandler($event)"
+                ></app-entities-changer>
+            </div>
+            <div class="app-user-management-dashboard__entities-changer">
+                <app-entities-changer
+                    [entities]="entityManagementDataSource.groups | namedEntitySearch: entitySearch.searchString"
+                    title="Local Groups"
+                    entityIcon="account_box"
+                    [selectedEntity]="selectedEntity"
+                    (entityChanged)="entityChangeHandler($event)"
+                ></app-entities-changer>
+            </div>
         </div>
         <div class="app-user-management-dashboard__tools">
-            <mat-accordion *ngIf="hasSelectedEntity">
-                <mat-expansion-panel *ngIf="isUserSelected" expanded="true">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>User Profile</mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <app-user-view [user]="selectedEntity"></app-user-view>
-                    <div class="app-user-management-dashboard__profile-toolbar">
-                        <button mat-raised-button (click)="openEditUserDialog(selectedEntity)">Edit</button>
+            <div *ngIf="hasSelectedEntity">
+                <app-expansion-panel *ngIf="isUserSelected" expanded="true" title="User Profile">
+                    <div class="app-user-management-dashboard__profile-wrapper">
+                        <app-user-view [user]="selectedEntity"></app-user-view>
                     </div>
-                </mat-expansion-panel>
-                <mat-expansion-panel *ngIf="isGroupSelected" expanded="true">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Group Profile</mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <app-group-view [group]="selectedEntity"></app-group-view>
-                    <div class="app-user-management-dashboard__profile-toolbar">
-                        <button mat-raised-button (click)="openEditGroupDialog(selectedEntity)">Edit</button>
+                    <div class="app-user-management-dashboard__profile-toolbar" header-additional>
+                        <button
+                            mat-icon-button
+                            [matMenuTriggerFor]="userProfileMenu"
+                            class="app-user-management-dashboard__profile-toolbar-menu"
+                        >
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #userProfileMenu="matMenu">
+                            <button mat-menu-item (click)="openEditUserDialog(selectedEntity)">Edit user</button>
+                        </mat-menu>
                     </div>
-                </mat-expansion-panel>
-            </mat-accordion>
-            <mat-accordion *ngIf="hasSelectedEntity">
-                <mat-expansion-panel expanded="true">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>{{ isUserSelected ? 'User' : 'Group' }} Permissions</mat-panel-title>
-                    </mat-expansion-panel-header>
+                </app-expansion-panel>
+                <app-expansion-panel *ngIf="isGroupSelected" expanded="true" title="Group Profile">
+                    <div class="app-user-management-dashboard__profile-wrapper">
+                        <app-group-view [group]="selectedEntity"></app-group-view>
+                    </div>
+                    <div class="app-user-management-dashboard__profile-toolbar" header-additional>
+                        <button
+                            mat-icon-button
+                            [matMenuTriggerFor]="groupMenu"
+                            class="app-user-management-dashboard__profile-toolbar-menu"
+                        >
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #groupMenu="matMenu">
+                            <button mat-menu-item (click)="openEditGroupDialog(selectedEntity)">Edit group</button>
+                        </mat-menu>
+                    </div>
+                </app-expansion-panel>
+            </div>
+            <div *ngIf="hasSelectedEntity">
+                <app-expansion-panel expanded="true" [title]="(isUserSelected ? 'User' : 'Group') + 'Permissions'">
                     <app-permissions-changer
                         [selectedPermissions]="selectedEntity.permissions"
                         [permissions]="entityManagementDataSource.permissions"
                         (permisssionsChanged)="permisssionChangeHandler($event)"
                     ></app-permissions-changer>
-                </mat-expansion-panel>
-            </mat-accordion>
-            <mat-accordion *ngIf="hasSelectedEntity && isUserSelected">
-                <mat-expansion-panel expanded="true">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Effective Permissions</mat-panel-title>
-                    </mat-expansion-panel-header>
+                </app-expansion-panel>
+            </div>
+            <div *ngIf="hasSelectedEntity && isUserSelected">
+                <app-expansion-panel expanded="true" title="Effective Permissions">
                     <app-permissions-changer
                         [selectedPermissions]="entityManagementDataSource.getUserActivePermissionIds(selectedEntity)"
                         [permissions]="entityManagementDataSource.permissions"
                         readonly="true"
                     ></app-permissions-changer>
-                </mat-expansion-panel>
-            </mat-accordion>
+                </app-expansion-panel>
+            </div>
         </div>
         <div class="app-user-management-dashboard__tools">
-            <mat-accordion *ngIf="hasSelectedEntity && isUserSelected">
-                <mat-expansion-panel expanded="true">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Group Membership</mat-panel-title>
-                    </mat-expansion-panel-header>
+            <div *ngIf="hasSelectedEntity && isUserSelected">
+                <app-expansion-panel expanded="true" title="Group Membership">
                     <app-search-bar #groupSearch></app-search-bar>
+                    <mat-divider></mat-divider>
                     <app-groups-changer
                         [selectedGroups]="selectedEntity.groups"
                         [groups]="entityManagementDataSource.groups | namedEntitySearch: groupSearch.searchString"
                         (groupsChanged)="groupChangeHandler($event)"
                     ></app-groups-changer>
-                </mat-expansion-panel>
-            </mat-accordion>
+                </app-expansion-panel>
+            </div>
         </div>
     </div>
 </div>

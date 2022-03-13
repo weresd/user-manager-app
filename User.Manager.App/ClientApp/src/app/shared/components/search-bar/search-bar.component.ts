@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'app-search-bar',
@@ -15,11 +15,18 @@ export class SearchBarComponent
     public searchString: string = '';
 
     /**
-     * Output event "searchInput".
+     * Output event "searchStringChange".
      *
      * @type {EventEmitter<string>}
      */
-    @Output() public searchInput: EventEmitter<string> = new EventEmitter<string>();
+    @Output() public searchStringChange: EventEmitter<string> = new EventEmitter<string>();
+
+    /**
+     * Search string HTML element.
+     *
+     * @type {ElementRef}
+     */
+    @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
 
     /**
      * Search string input event handler.
@@ -30,8 +37,29 @@ export class SearchBarComponent
      */
     public input(event: any): void
     {
-        this.searchString = event.target.value;
+        this.changeSearchString(event.target.value);
+    }
 
-        this.searchInput.emit(this.searchString);
+    /**
+     * Clears search string.
+     *
+     * @returns {void}
+     */
+    public clear(): void
+    {
+        this.changeSearchString('');
+        this.searchInput.nativeElement.value = '';
+    }
+
+    /**
+     * Change search string.
+     *
+     * @returns {void}
+     */
+    protected changeSearchString(searchString: string): void
+    {
+        this.searchString = searchString;
+
+        this.searchStringChange.emit(this.searchString);
     }
 }

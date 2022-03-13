@@ -1,0 +1,18 @@
+<div class="app-checkbox" [class.app-checkbox--checked]="checked">
+    <label class="app-checkbox__label" [class.app-checkbox__label--disabled]="disabled">
+        <input
+            type="checkbox"
+            class="app-checkbox__checkbox"
+            [checked]="checked"
+            [disabled]="disabled"
+            [value]="value"
+            (input)="input($event)"
+        />
+        <span class="app-checkbox__fake-checkbox">
+            <mat-icon color="accent">done</mat-icon>
+        </span>
+        <span class="app-checkbox__label-text">
+            <ng-content></ng-content>
+        </span>
+    </label>
+</div>

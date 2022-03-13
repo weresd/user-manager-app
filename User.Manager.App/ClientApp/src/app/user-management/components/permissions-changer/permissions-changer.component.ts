@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material';
 
 import { Permission } from '@app/core';
 
@@ -54,13 +53,13 @@ export class PermissionsChangerComponent
      * Handler handling permission selection.
      *
      * @param {Permission} permission
-     * @param {MatCheckboxChange} event
+     * @param {boolean} checked
      *
      * @returns {void}
      */
-    public change(permission: Permission, event: MatCheckboxChange): void
+    public change(permission: Permission, checked: boolean): void
     {
-        if (event.checked) {
+        if (checked) {
             this.selectedPermissions.push(permission.id);
         } else {
             this.selectedPermissions = this.selectedPermissions.filter(p => p !== permission.id);

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material';
 
 import { Group } from '@app/core';
 
@@ -47,13 +46,13 @@ export class GroupsChangerComponent
      * Handler handling group selection.
      *
      * @param {Group} group
-     * @param {MatCheckboxChange} event
+     * @param {boolean} checked
      *
      * @returns {void}
      */
-    public change(group: Group, event: MatCheckboxChange): void
+    public change(group: Group, checked: boolean): void
     {
-        if (event.checked) {
+        if (checked) {
             this.selectedGroups.push(group.id);
         } else {
             this.selectedGroups = this.selectedGroups.filter(p => p !== group.id);

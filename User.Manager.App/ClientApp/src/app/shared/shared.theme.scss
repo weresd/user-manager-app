@@ -1,5 +1,13 @@
 @import "components/entities-changer/entities-changer.theme.scss";
+@import "components/search-bar/search-bar.component.theme.scss";
+@import "components/expansion-panel/expansion-panel.component.theme.scss";
+@import "components/checkbox/checkbox.component.theme.scss";
+@import "components/view-row/view-row.component.theme.scss";
 
 @mixin app-shared-module-theme($theme) {
     @include app-entities-changer-component-theme($theme);
+    @include app-search-bar-component-theme($theme);
+    @include app-expansion-panel-component-theme($theme);
+    @include app-checkbox-component-theme($theme);
+    @include app-view-row-component-theme($theme);
 }
