@@ -14,6 +14,6 @@ export class NamedEntitySearchPipe implements PipeTransform
             return entities;
         }
 
-        return entities.filter(e => e.name.indexOf(searchName) !== -1);
+        return entities.filter(e => e.name.toLowerCase().indexOf(searchName.toLowerCase()) !== -1);
     }
 }
