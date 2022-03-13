@@ -31,34 +31,6 @@ export class UserManagementDashboardComponent implements OnInit
     public entityManagementDataSource: EntityManagementDataSource;
 
     /**
-     * State of user and group profile extension panels.
-     *
-     * @type {boolean}
-     */
-    public viewExpansionPanelState: boolean = true;
-
-    /**
-     * State of group and user permissions extension panels.
-     *
-     * @type {boolean}
-     */
-    public permissionsExpansionPanelState: boolean = true;
-
-    /**
-     * State of user effective permissions extension panels.
-     *
-     * @type {boolean}
-     */
-    public effectivePermissionsExpansionPanelState: boolean = true;
-
-    /**
-     * Status of group list extension Panels.
-     *
-     * @type {boolean}
-     */
-    public groupsExpansionPanelState: boolean = true;
-
-    /**
      * Presence of the selected entity.
      *
      * @type {boolean}
